@@ -31,20 +31,23 @@ class Flow extends LZ_Controller
 		if ( ! $data['follower'] = Flow_Model::getFollowing($user_id) ) $data['follower'] = array();
 		
 		
-		if ( $user_id == $_SESSION['user_id'] ){
+		if ( isset($_SESSION['user_id']) && $user_id == $_SESSION['user_id'] ){
 			$data['cur'] = true;
 		} else {
 			$data['cur'] = false;
 			
 			$this->meta['page'] = 'flow/user/'.$user_id;
-			$this->meta['tabs']['flow/'] = '&lt; Назад';
-			$this->meta['tabs']['flow/user/'.$user_id] = $data['user']->name;
-		
-			if ( ! Flow_Model::getFollow($user_id, $_SESSION['user_id']) ) {
-				$data['follow'] = FALSE;
-			} else {
-				$data['follow'] = TRUE;
+			$data['follow'] = FALSE;
+			if ( $_SESSION['login'] ) {
+				$this->meta['tabs']['flow/'] = '&lt; Назад';
+			
+				if ( ! Flow_Model::getFollow($user_id, $_SESSION['user_id']) ) {
+					$data['follow'] = FALSE;
+				} else {
+					$data['follow'] = TRUE;
+				}
 			}
+			$this->meta['tabs']['flow/user/'.$user_id] = $data['user']->name;
 		}
 		$this->view('flow/flow', $data);
 	}

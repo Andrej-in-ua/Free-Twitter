@@ -22,7 +22,7 @@ class Flow_Model
 	{
 		
 		$LZ = & get_instance();
-		if ( $user_id == $_SESSION['user_id'] ){
+		if ( $_SESSION['login'] && $user_id == $_SESSION['user_id'] ){
 			$stmt = $LZ->DB->prepare("SELECT `twitts`.*, `users`.`id` as user_id, `users`.`name`, `users`.`image`
 				FROM `twitts`
 				LEFT OUTER JOIN `following` ON `following`.`follower` = :userid

@@ -18,12 +18,13 @@
 </div>
 <div id="wrapper">
 	<ul id="navbar">
-        <?php if ( $_SESSION['login'] ): ?>
-        		<?php if ( isset( $tabs ) ) :
+    	<?php if ( isset( $tabs ) ) :
 					foreach ( $tabs as $link => $name ): ?>
 						<li><a href="<?=BASEURL.$link?>"<?=($page==$link?' class="active"':'')?>><?=$name?></a></li>
-					<?php endforeach; ?>                    
-                <?php endif; ?>
+			<?php endforeach; ?>                    
+        <?php endif; ?>
+        
+        <?php if ( $_SESSION['login'] ): ?>
                 <li><a href="<?=BASEURL?>flow"<?=($page=='flow'?' class="active"':'')?>>Поток</a></li>
                 <li><a href="<?=BASEURL?>users/profile/"<?=($page=='profile'?' class="active"':'')?>>Профиль</a></li>
                 <li><a href="<?=BASEURL?>users/logout/">Выйти</a></li>
