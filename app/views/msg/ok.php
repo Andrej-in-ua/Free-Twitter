@@ -1,0 +1,1 @@
+<div class="ok"><?=$content?></div>
