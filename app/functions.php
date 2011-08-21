@@ -14,9 +14,8 @@ function __autoload($class_name) {
 
 function e404()
 {
-	global $app, $router;
+	global $app;
 	
-	echo $router->controller;
 	if ( ! is_object($app) ){
 		LZ_Controller::view("404");
 	} else {
